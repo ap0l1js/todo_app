@@ -9,15 +9,16 @@ export const GlobalStyles = createGlobalStyle`
 
   :focus {
     outline: 0;
+    border: 1px solid ${(props) => props.theme.colors['purple-900']};
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors['gray-600']};
-    color: ${({ theme }) => theme.colors['gray-100']};
+    background-color: ${(props) => props.theme.colors['gray-600']};
+    color: ${(props) => props.theme.colors['gray-100']};
   }
 
   body, input, textarea, button {
-    font: ${({ theme }) =>
-      `${theme.fontWeight.normal} ${theme.fontSize.md} Inter, sans-serif`};
+    font: ${(props) =>
+      `${props.theme.fontWeight.normal} ${props.theme.fontSize.md} Inter, sans-serif`};
   }
 `;
