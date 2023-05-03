@@ -1,20 +1,20 @@
 import { PlusCircle } from '@phosphor-icons/react';
-import { Button, Container, Input } from './styles';
+import { CreatorFormContainer } from './styles';
 
-export function Form() {
+export function CreatorForm() {
   return (
-    <Container>
-      <Input
+    <CreatorFormContainer>
+      <input
         type="text"
         placeholder="Adicione uma nova tarefa"
       />
-      <Button>
+      <button type="submit">
         Criar
         <PlusCircle
           weight="bold"
           size={16}
         />
-      </Button>
-    </Container>
+      </button>
+    </CreatorFormContainer>
   );
 }

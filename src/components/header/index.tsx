@@ -1,10 +1,10 @@
 import logo from '../../assets/logo.svg';
-import { Container } from './styles';
+import { HeaderContent } from './styles';
 
 export function Header() {
   return (
-    <Container>
+    <HeaderContent>
       <img src={logo} />
-    </Container>
+    </HeaderContent>
   );
 }

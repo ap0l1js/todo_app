@@ -1,18 +1,13 @@
 import React from 'react';
-import { Form } from '../../components/form';
 import { Header } from '../../components/header';
-import { Body } from './styles';
+import { TaskContainer } from '../../containers/task_container';
 
 export function Home() {
   return (
     <React.Fragment>
       <Header />
 
-      <Body>
-        <Form />
-
-        <span>tasks</span>
-      </Body>
+      <TaskContainer />
     </React.Fragment>
   );
 }
