@@ -5,6 +5,6 @@ interface HeadingProps {
   variant?: 'purple';
 }
 
-export function Heading({ children, variant }: HeadingProps) {
-  return <HeadingContent variant={variant}>{children}</HeadingContent>;
-}
+export const Heading = ({ children, variant }: HeadingProps) => (
+  <HeadingContent variant={variant}>{children}</HeadingContent>
+);

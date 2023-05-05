@@ -5,9 +5,6 @@ interface TaskContentProps {
 }
 
 export const TaskContent = styled.div<TaskContentProps>`
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   padding: 1rem;
   cursor: pointer;
 
@@ -60,6 +57,21 @@ export const TaskContent = styled.div<TaskContentProps>`
       -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
       transform: rotate(45deg);
+    }
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    color: ${(props) => props.theme.colors['gray-300']};
+    padding: 0.313rem;
+    cursor: pointer;
+    line-height: 0;
+    border-radius: 2px;
+
+    :hover {
+      background: ${(props) => props.theme.colors['gray-400']};
+      color: ${(props) => props.theme.colors['danger-100']};
     }
   }
 `;

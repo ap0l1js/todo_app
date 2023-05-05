@@ -1,13 +1,15 @@
+import { values } from 'mobx';
+import { observer } from 'mobx-react-lite';
 import { Counter } from '../../../components/counter';
 import { Flex } from '../../../components/flex';
 import { Heading } from '../../../components/heading';
+import { store } from '../../../store';
 
-interface StatusProps {
-  created: number;
-  completed: number;
-}
+export const Status = observer(() => {
+  const createdTaskCount = values(store.todos).length;
 
-export function Status({ created, completed }: StatusProps) {
+  const completedTaskCount = store.completedCount;
+
   return (
     <Flex
       justifyContent="space-between"
@@ -19,7 +21,7 @@ export function Status({ created, completed }: StatusProps) {
       >
         <Heading>Tarefas criadas</Heading>
 
-        <Counter> {created} </Counter>
+        <Counter> {createdTaskCount} </Counter>
       </Flex>
 
       <Flex
@@ -29,9 +31,11 @@ export function Status({ created, completed }: StatusProps) {
         <Heading variant="purple">Concluidas</Heading>
 
         <Counter>
-          {completed} de {created}
+          {completedTaskCount > 0
+            ? `${completedTaskCount} de ${createdTaskCount}`
+            : 0}
         </Counter>
       </Flex>
     </Flex>
   );
-}
+});

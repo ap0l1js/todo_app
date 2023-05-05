@@ -1,17 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PlusCircle } from '@phosphor-icons/react';
+import { observer } from 'mobx-react-lite';
 import { useForm } from 'react-hook-form';
+import { v4 as uuidv4 } from 'uuid';
 import { z } from 'zod';
+import { store } from '../../../store';
 import { CreatorFormContainer } from './styles';
 
 const creatorFormSchema = z.object({
-  task: z.string(),
+  title: z.string(),
 });
 
 type CreatorFormInputs = z.infer<typeof creatorFormSchema>;
 
-export function CreatorForm() {
+export const CreatorForm = observer(() => {
   const {
+    reset,
     register,
     handleSubmit,
     formState: { isSubmitting },
@@ -19,17 +23,18 @@ export function CreatorForm() {
     resolver: zodResolver(creatorFormSchema),
   });
 
-  async function handleCreateTask(data: CreatorFormInputs) {
-    console.log('dataaa: ', data);
-  }
+  const handleAddTask = async (data: CreatorFormInputs) => {
+    reset();
+    store.addTodo(uuidv4(), data.title);
+  };
 
   return (
-    <CreatorFormContainer onSubmit={handleSubmit(handleCreateTask)}>
+    <CreatorFormContainer onSubmit={handleSubmit(handleAddTask)}>
       <input
         type="text"
         required
         placeholder="Adicione uma nova tarefa"
-        {...register('task')}
+        {...register('title')}
       />
       <button
         type="submit"
@@ -43,4 +48,4 @@ export function CreatorForm() {
       </button>
     </CreatorFormContainer>
   );
-}
+});

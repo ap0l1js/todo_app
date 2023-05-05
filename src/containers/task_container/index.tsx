@@ -1,10 +1,16 @@
+import { values } from 'mobx';
+import { observer } from 'mobx-react-lite';
+import { EmptyAlert } from '../../components/alerts/empty_alert';
 import { Flex } from '../../components/flex';
 import { Task } from '../../components/task';
+import { store } from '../../store';
 import { CreatorForm } from './creator_form';
 import { Status } from './status';
 import { Content } from './styles';
 
-export function TaskContainer() {
+export const TaskContainer = observer(() => {
+  const isEmpty = values(store.todos).length == 0;
+
   return (
     <Content
       as={Flex}
@@ -17,23 +23,24 @@ export function TaskContainer() {
         gap="1.5rem"
         direction="column"
       >
-        <Status
-          created={0}
-          completed={0}
-        />
+        <Status />
 
         <Flex
           gap="0.75rem"
           direction="column"
         >
-          <Task title="Testando essa task" />
-          <Task
-            isDone
-            title="Era uma vez testando essa daqui"
-          />
-          <Task title="Esse daqui ainda nao testei" />
+          {!isEmpty ? (
+            values(store.todos).map((task, id) => (
+              <Task
+                key={id}
+                task={task}
+              />
+            ))
+          ) : (
+            <EmptyAlert />
+          )}
         </Flex>
       </Flex>
     </Content>
   );
-}
+});

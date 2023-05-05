@@ -4,6 +4,6 @@ interface CounterProps {
   children: React.ReactNode;
 }
 
-export function Counter({ children }: CounterProps) {
-  return <CounterContent>{children}</CounterContent>;
-}
+export const Counter = ({ children }: CounterProps) => (
+  <CounterContent>{children}</CounterContent>
+);

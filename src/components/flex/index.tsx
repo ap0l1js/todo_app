@@ -7,6 +7,6 @@ interface FlexProps {
   alignItems?: string;
   justifyContent?: string;
 }
-export function Flex({ children, ...props }: FlexProps) {
-  return <FlexContainer {...props}>{children}</FlexContainer>;
-}
+export const Flex = ({ children, ...props }: FlexProps) => (
+  <FlexContainer {...props}>{children}</FlexContainer>
+);
