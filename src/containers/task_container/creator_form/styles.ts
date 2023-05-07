@@ -6,6 +6,11 @@ export const CreatorFormContainer = styled.form`
   gap: 0.5rem;
   margin-top: -27px;
 
+  @media (max-width: 428px) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   input {
     flex: 1;
     padding: 1rem;
@@ -32,6 +37,7 @@ export const CreatorFormContainer = styled.form`
 
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     cursor: pointer;
     font-weight: ${(props) => props.theme.fontWeight.bold};

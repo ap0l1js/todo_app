@@ -1,11 +1,11 @@
 import { values } from 'mobx';
-import { types } from 'mobx-state-tree';
+import { Instance, types } from 'mobx-state-tree';
 
 const todoModel = types
   .model({
     id: types.identifier,
-    title: types.optional(types.string, ''),
-    isDone: types.optional(types.boolean, false),
+    title: types.string,
+    isDone: types.boolean,
   })
   .actions((self) => ({
     toggle() {
@@ -13,24 +13,26 @@ const todoModel = types
     },
   }));
 
+export interface ITodo extends Instance<typeof todoModel> {}
+
 const rootStore = types
   .model({
-    todos: types.map(todoModel),
+    todos: types.array(todoModel),
   })
   .views((self) => ({
     get completedCount() {
-      return values(self.todos).filter((todo) => todo?.isDone).length;
+      return values(self.todos).filter((todo) => todo.isDone).length;
     },
   }))
   .actions((self) => ({
     addTodo(id: string, title: string) {
-      self.todos.set(id, todoModel.create({ id, title }));
+      self.todos.push(todoModel.create({ id, title, isDone: false }));
     },
     deleteTodo(id: string) {
-      self.todos.delete(id);
+      self.todos.replace(self.todos.filter((todo) => todo.id !== id));
     },
   }));
 
 const store = rootStore.create();
 
-export { store, todoModel };
+export { store };

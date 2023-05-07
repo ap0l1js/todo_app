@@ -1,15 +1,10 @@
 import { Trash } from '@phosphor-icons/react';
 import { observer } from 'mobx-react-lite';
-import { Instance } from 'mobx-state-tree';
-import { store, todoModel } from '../../store';
+import { ITodo, store } from '../../store';
 import { Flex } from '../flex';
 import { TaskContent } from './styles';
 
-interface TaskProps {
-  task: Instance<typeof todoModel>;
-}
-
-export const Task = observer(({ task }: TaskProps) => {
+export const Task = observer((task: ITodo) => {
   return (
     <TaskContent
       isDone={task.isDone}

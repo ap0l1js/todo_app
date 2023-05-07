@@ -30,12 +30,17 @@ export const TaskContainer = observer(() => {
           direction="column"
         >
           {!isEmpty ? (
-            values(store.todos).map((task, id) => (
-              <Task
-                key={id}
-                task={task}
-              />
-            ))
+            store.todos.map((task) => {
+              return (
+                <Task
+                  key={task.id}
+                  id={task.id}
+                  isDone={task.isDone}
+                  title={task.title}
+                  toggle={task.toggle}
+                />
+              );
+            })
           ) : (
             <EmptyAlert />
           )}
