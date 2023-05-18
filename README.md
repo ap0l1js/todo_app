@@ -4,7 +4,7 @@ The project allows the user to register tasks and mark them as completed.
 
 ## 🖥 Project Images
 
-<img src="https://github.com/ap0l1js/timerr/blob/master/src/assets/todo.png" align="center" />
+<img src="https://github.com/ap0l1js/todo_app/blob/master/src/assets/todo.png" align="center" />
 
 ## ⚙️ Technologies
 
